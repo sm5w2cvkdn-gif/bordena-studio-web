@@ -1088,18 +1088,21 @@ fbq('track', 'PageView');
 </div>
 
 <script>
+try {
   var servicesModal = document.getElementById('servicesModal');
   var servicesModalClose = document.getElementById('servicesModalClose');
   var openTriggers = document.querySelectorAll('[data-open-services]');
 
   function openServicesModal(e){
     if (e) e.preventDefault();
+    if (!servicesModal) return;
     servicesModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     var mobileMenu = document.getElementById('mobileMenu');
     if (mobileMenu) mobileMenu.classList.remove('open');
   }
   function closeServicesModal(){
+    if (!servicesModal) return;
     servicesModal.classList.remove('open');
     document.body.style.overflow = '';
   }
@@ -1125,19 +1128,27 @@ fbq('track', 'PageView');
       if (target) target.classList.add('active');
     });
   });
+} catch (err) {
+  console.error('Error en modal de Servicios:', err);
+}
+</script>
 
+<script>
+try {
   var tiendaModal = document.getElementById('tiendaModal');
   var tiendaModalClose = document.getElementById('tiendaModalClose');
   var tiendaTriggers = document.querySelectorAll('[data-open-tienda]');
 
   function openTiendaModal(e){
     if (e) e.preventDefault();
+    if (!tiendaModal) return;
     tiendaModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     var mobileMenu = document.getElementById('mobileMenu');
     if (mobileMenu) mobileMenu.classList.remove('open');
   }
   function closeTiendaModal(){
+    if (!tiendaModal) return;
     tiendaModal.classList.remove('open');
     document.body.style.overflow = '';
   }
@@ -1151,6 +1162,9 @@ fbq('track', 'PageView');
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') closeTiendaModal();
   });
+} catch (err) {
+  console.error('Error en modal de Tienda:', err);
+}
 </script>
 
 
