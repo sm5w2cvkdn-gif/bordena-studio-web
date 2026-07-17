@@ -239,7 +239,9 @@ fbq('track', 'PageView');
     padding:11px 22px; border-radius:100px; background:var(--white);
     border:1px solid rgba(14,76,107,0.15); font-size:0.85rem; font-weight:500; color:var(--aegean-deep);
     box-shadow:0 6px 18px rgba(14,76,107,0.06);
+    font-family:'Roboto',sans-serif; cursor:default;
   }
+  a.benefit-pill, button.benefit-pill{cursor:pointer;}
   .benefit-pill svg{width:16px; height:16px; stroke:var(--aegean); fill:none; stroke-width:2;}
 
   /* ---------- CARRUSEL ---------- */
@@ -439,6 +441,14 @@ fbq('track', 'PageView');
   .franquicias-modal h2{font-size:1.25rem; margin-bottom:14px; color:var(--aegean-deep);}
   .franquicias-modal p{color:rgba(24,43,49,0.7); margin-bottom:22px; font-size:0.88rem;}
   .franquicias-modal .btn{width:100%; justify-content:center; font-size:0.82rem;}
+  .beneficio-item{
+    text-align:left; padding:14px 0; border-top:1px solid rgba(14,76,107,0.1);
+  }
+  .beneficio-item:first-of-type{border-top:none; padding-top:0;}
+  .beneficio-item .eyebrow{margin-bottom:6px; display:block;}
+  .beneficio-item h2{font-size:1rem; margin-bottom:6px; color:var(--aegean-deep);}
+  .beneficio-item p{margin-bottom:0; font-size:0.84rem;}
+  #beneficiosModal .btn{margin-top:18px;}
 
   /* ---------- CTA FINAL ---------- */
   .reserva{
@@ -609,8 +619,8 @@ fbq('track', 'PageView');
   <div class="container concepto-inner">
     <p class="signature-line">Ser parte de Bordena es más que un turno: es elegirte a vos misma.</p>
     <div class="concepto-benefits">
-      <span class="benefit-pill"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/></svg>Membresías Bordena</span>
-      <span class="benefit-pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Beneficios y descuentos</span>
+      <a href="#club" class="benefit-pill"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/></svg>Membresías Bordena</a>
+      <button class="benefit-pill" data-open-beneficios><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Beneficios y descuentos</button>
       <span class="benefit-pill"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>Fidelidad que se cuida</span>
     </div>
   </div>
@@ -1336,6 +1346,40 @@ try {
 }
 </script>
 
+<script>
+try {
+  var beneficiosModal = document.getElementById('beneficiosModal');
+  var beneficiosModalClose = document.getElementById('beneficiosModalClose');
+  var beneficiosTriggers = document.querySelectorAll('[data-open-beneficios]');
+
+  function openBeneficiosModal(e){
+    if (e) e.preventDefault();
+    if (!beneficiosModal) return;
+    beneficiosModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+  }
+  function closeBeneficiosModal(){
+    if (!beneficiosModal) return;
+    beneficiosModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  beneficiosTriggers.forEach(function(el){ el.addEventListener('click', openBeneficiosModal); });
+  if (beneficiosModalClose) beneficiosModalClose.addEventListener('click', closeBeneficiosModal);
+  if (beneficiosModal) {
+    beneficiosModal.addEventListener('click', function(e){
+      if (e.target === beneficiosModal) closeBeneficiosModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeBeneficiosModal();
+  });
+} catch (err) {
+  console.error('Error en modal de Beneficios:', err);
+}
+</script>
+
 
 <div class="tienda-modal-overlay" id="tiendaModal">
   <div class="tienda-modal">
@@ -1412,6 +1456,26 @@ try {
     <h2>¿Querés abrir una franquicia Bordena?</h2>
     <p>Apuntamos a construir la red de franquicias de estética y belleza más grande del país, manteniendo siempre la calidez humana y la calidad profesional que nos representan. Si te interesa ser parte, escribinos.</p>
     <a href="mailto:bordenastudioadm@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena" class="btn btn-primary">Escribinos a bordenastudioadm@gmail.com</a>
+  </div>
+</div>
+
+<div class="franquicias-modal-overlay" id="beneficiosModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Beneficios y descuentos</h3>
+      <button class="services-modal-close" id="beneficiosModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="beneficio-item">
+      <span class="eyebrow">Todos los viernes</span>
+      <h2>Hasta 20% de reintegro</h2>
+      <p>Abonando con Cuenta DNI los días viernes, tenés hasta 20% de reintegro en tu tratamiento.</p>
+    </div>
+    <div class="beneficio-item">
+      <span class="eyebrow">Tarjeta de fidelidad</span>
+      <h2>Un servicio de regalo</h2>
+      <p>Venís cada 21 días y, al completar 7 visitas, te regalamos un servicio a elección.</p>
+    </div>
+    <a href="https://tuturno.io/bordenastudio" target="_blank" rel="noopener" class="btn btn-primary">Reservar mi turno</a>
   </div>
 </div>
 
