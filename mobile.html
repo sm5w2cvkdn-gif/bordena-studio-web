@@ -423,15 +423,22 @@ fbq('track', 'PageView');
   }
   .empty-icon svg{width:18px; height:18px; stroke:var(--aegean-light); fill:none; stroke-width:1.8;}
 
-  /* ---------- FRANQUICIAS ---------- */
-  .franquicias{background:var(--ivory); padding-top:0; padding-bottom:40px;}
-  .franquicias-box{
-    background:linear-gradient(160deg, var(--aegean) 0%, var(--aegean-deep) 100%);
-    border-radius:20px; padding:40px 26px; text-align:center; color:var(--white);
+  /* ---------- MODAL DE FRANQUICIAS ---------- */
+  .franquicias-modal-overlay{
+    display:none; position:fixed; inset:0; z-index:500;
+    background:rgba(10,50,68,0.55);
+    align-items:flex-end; justify-content:center;
   }
-  .franquicias-box h2{font-size:1.4rem; margin:14px 0 14px; color:var(--white);}
-  .franquicias-box p{color:#CFE7F1; font-size:0.86rem; margin-bottom:24px;}
-  .franquicias-box .btn{font-size:0.8rem; padding:12px 18px;}
+  .franquicias-modal-overlay.open{display:flex;}
+  .franquicias-modal{
+    background:var(--ivory); border-radius:20px 20px 0 0; width:100%; max-width:430px;
+    max-height:88vh; overflow-y:auto; box-shadow:0 -10px 40px rgba(0,0,0,0.3);
+    padding:22px 20px 30px; text-align:center;
+  }
+  .franquicias-modal .eyebrow{margin:4px 0 12px; display:block;}
+  .franquicias-modal h2{font-size:1.25rem; margin-bottom:14px; color:var(--aegean-deep);}
+  .franquicias-modal p{color:rgba(24,43,49,0.7); margin-bottom:22px; font-size:0.88rem;}
+  .franquicias-modal .btn{width:100%; justify-content:center; font-size:0.82rem;}
 
   /* ---------- CTA FINAL ---------- */
   .reserva{
@@ -533,7 +540,8 @@ fbq('track', 'PageView');
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#concepto">Concepto</a>
-    <a href="#franquicias">Franquicias</a>
+    <button class="mobile-menu-btn" data-open-franquicias>Franquicias</button>
+    <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20trabajar%20con%20ustedes">Trabajá con nosotros</a>
     <button class="mobile-menu-btn" data-open-services>Servicios</button>
     <button class="mobile-menu-btn" data-open-tienda>Tienda</button>
   </div>
@@ -604,17 +612,6 @@ fbq('track', 'PageView');
       <span class="benefit-pill"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/></svg>Membresías Bordena</span>
       <span class="benefit-pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Beneficios y descuentos</span>
       <span class="benefit-pill"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>Fidelidad que se cuida</span>
-    </div>
-  </div>
-</section>
-
-<section class="franquicias" id="franquicias">
-  <div class="container">
-    <div class="franquicias-box reveal">
-      <span class="eyebrow on-dark">Franquicias</span>
-      <h2>¿Querés abrir una franquicia Bordena?</h2>
-      <p>Apuntamos a construir la red de franquicias de estética y belleza más grande del país, manteniendo siempre la calidez humana y la calidad profesional que nos representan. Si te interesa ser parte, escribinos.</p>
-      <a href="mailto:bordenastudioadm@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena" class="btn btn-on-dark">Escribinos a bordenastudioadm@gmail.com</a>
     </div>
   </div>
 </section>
@@ -1190,6 +1187,40 @@ try {
 }
 </script>
 
+<script>
+try {
+  var franquiciasModal = document.getElementById('franquiciasModal');
+  var franquiciasModalClose = document.getElementById('franquiciasModalClose');
+  var franquiciasTriggers = document.querySelectorAll('[data-open-franquicias]');
+
+  function openFranquiciasModal(e){
+    if (e) e.preventDefault();
+    if (!franquiciasModal) return;
+    franquiciasModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+  }
+  function closeFranquiciasModal(){
+    if (!franquiciasModal) return;
+    franquiciasModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  franquiciasTriggers.forEach(function(el){ el.addEventListener('click', openFranquiciasModal); });
+  if (franquiciasModalClose) franquiciasModalClose.addEventListener('click', closeFranquiciasModal);
+  if (franquiciasModal) {
+    franquiciasModal.addEventListener('click', function(e){
+      if (e.target === franquiciasModal) closeFranquiciasModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeFranquiciasModal();
+  });
+} catch (err) {
+  console.error('Error en modal de Franquicias:', err);
+}
+</script>
+
 
 <div class="tienda-modal-overlay" id="tiendaModal">
   <div class="tienda-modal">
@@ -1253,6 +1284,19 @@ try {
       </div>
 
     </div>
+  </div>
+</div>
+
+<div class="franquicias-modal-overlay" id="franquiciasModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Franquicias</h3>
+      <button class="services-modal-close" id="franquiciasModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <span class="eyebrow">Franquicias</span>
+    <h2>¿Querés abrir una franquicia Bordena?</h2>
+    <p>Apuntamos a construir la red de franquicias de estética y belleza más grande del país, manteniendo siempre la calidez humana y la calidad profesional que nos representan. Si te interesa ser parte, escribinos.</p>
+    <a href="mailto:bordenastudioadm@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena" class="btn btn-primary">Escribinos a bordenastudioadm@gmail.com</a>
   </div>
 </div>
 
