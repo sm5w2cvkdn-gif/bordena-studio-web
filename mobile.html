@@ -551,6 +551,7 @@ fbq('track', 'PageView');
   <div class="mobile-menu" id="mobileMenu">
     <a href="#concepto">Concepto</a>
     <button class="mobile-menu-btn" data-open-franquicias>Franquicias</button>
+    <button class="mobile-menu-btn" data-open-newsletter>Newsletter</button>
     <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20trabajar%20con%20ustedes">Trabajá con nosotros</a>
     <button class="mobile-menu-btn" data-open-services>Servicios</button>
     <button class="mobile-menu-btn" data-open-tienda>Tienda</button>
@@ -802,6 +803,7 @@ fbq('track', 'PageView');
     <div class="foot-links">
       <a href="#concepto">Concepto</a>
       <button class="foot-link-btn" data-open-services>Servicios</button>
+      <button class="foot-link-btn" data-open-newsletter>Newsletter</button>
       <a href="https://tuturno.io/bordenastudio" target="_blank" rel="noopener">Reservar turno</a>
     </div>
     <p>© 2026 Bordena Studio. Todos los derechos reservados.</p>
@@ -1380,6 +1382,40 @@ try {
 }
 </script>
 
+<script>
+try {
+  var newsletterModal = document.getElementById('newsletterModal');
+  var newsletterModalClose = document.getElementById('newsletterModalClose');
+  var newsletterTriggers = document.querySelectorAll('[data-open-newsletter]');
+
+  function openNewsletterModal(e){
+    if (e) e.preventDefault();
+    if (!newsletterModal) return;
+    newsletterModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+  }
+  function closeNewsletterModal(){
+    if (!newsletterModal) return;
+    newsletterModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  newsletterTriggers.forEach(function(el){ el.addEventListener('click', openNewsletterModal); });
+  if (newsletterModalClose) newsletterModalClose.addEventListener('click', closeNewsletterModal);
+  if (newsletterModal) {
+    newsletterModal.addEventListener('click', function(e){
+      if (e.target === newsletterModal) closeNewsletterModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeNewsletterModal();
+  });
+} catch (err) {
+  console.error('Error en modal de Newsletter:', err);
+}
+</script>
+
 
 <div class="tienda-modal-overlay" id="tiendaModal">
   <div class="tienda-modal">
@@ -1477,6 +1513,19 @@ try {
       <p>Venís cada 21 días y, al completar 7 visitas, te regalamos un servicio a elección.</p>
     </div>
     <a href="https://tuturno.io/bordenastudio" target="_blank" rel="noopener" class="btn btn-primary">Reservar mi turno</a>
+  </div>
+</div>
+
+<div class="franquicias-modal-overlay" id="newsletterModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Newsletter Bordena</h3>
+      <button class="services-modal-close" id="newsletterModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <span class="eyebrow">Suscribite gratis</span>
+    <h2>Tips reales para tu piel, cada semana</h2>
+    <p>Sumate a nuestra newsletter y recibí, todas las semanas, contenido real sobre el cuidado de tu piel, tips de salud y bienestar, directo en tu mail.</p>
+    <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener" class="btn btn-primary">Suscribirme</a>
   </div>
 </div>
 
