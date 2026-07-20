@@ -425,6 +425,30 @@ fbq('track', 'PageView');
   }
   .empty-icon svg{width:18px; height:18px; stroke:var(--aegean-light); fill:none; stroke-width:1.8;}
 
+  /* ---------- POPUP PROMO DE BIENVENIDA ---------- */
+  .promo-popup-overlay{
+    display:none; position:fixed; inset:0; z-index:600;
+    background:rgba(10,50,68,0.6);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .promo-popup-overlay.open{display:flex;}
+  .promo-popup{
+    position:relative; background:var(--ivory); border-radius:20px; width:100%; max-width:340px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.4); padding:36px 24px 26px; text-align:center;
+  }
+  .promo-popup-close{
+    position:absolute; top:10px; right:10px; background:none; border:none; font-size:1.4rem;
+    line-height:1; cursor:pointer; color:var(--aegean-deep); padding:4px 10px; border-radius:8px;
+  }
+  .promo-popup-percent{
+    display:inline-block; font-family:'Cinzel',serif; font-weight:700; font-size:1.8rem;
+    color:var(--aegean); margin-bottom:10px;
+  }
+  .promo-popup h2{font-size:1.1rem; margin-bottom:10px; color:var(--aegean-deep);}
+  .promo-popup p{color:rgba(24,43,49,0.7); font-size:0.84rem; margin-bottom:18px;}
+  .promo-popup .btn{width:100%; justify-content:center; margin-bottom:12px; font-size:0.82rem;}
+  .promo-popup-fineprint{font-size:0.64rem; color:rgba(24,43,49,0.45); display:block;}
+
   /* ---------- MODAL DE FRANQUICIAS ---------- */
   .franquicias-modal-overlay{
     display:none; position:fixed; inset:0; z-index:500;
@@ -1416,6 +1440,53 @@ try {
 }
 </script>
 
+<script>
+try {
+  var promoPopup = document.getElementById('promoPopup');
+  var promoPopupClose = document.getElementById('promoPopupClose');
+  var promoPopupCta = document.getElementById('promoPopupCta');
+  var PROMO_KEY = 'bordena_promo_dismissed';
+
+  function closePromoPopup(){
+    if (!promoPopup) return;
+    promoPopup.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (promoPopup && !localStorage.getItem(PROMO_KEY)) {
+    setTimeout(function(){
+      promoPopup.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }, 4000);
+  }
+
+  if (promoPopupClose) {
+    promoPopupClose.addEventListener('click', function(){
+      closePromoPopup();
+      try { localStorage.setItem(PROMO_KEY, '1'); } catch(e) {}
+    });
+  }
+  if (promoPopupCta) {
+    promoPopupCta.addEventListener('click', function(){
+      try { localStorage.setItem(PROMO_KEY, '1'); } catch(e) {}
+    });
+  }
+  if (promoPopup) {
+    promoPopup.addEventListener('click', function(e){
+      if (e.target === promoPopup) {
+        closePromoPopup();
+        try { localStorage.setItem(PROMO_KEY, '1'); } catch(e) {}
+      }
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closePromoPopup();
+  });
+} catch (err) {
+  console.error('Error en popup promocional:', err);
+}
+</script>
+
 
 <div class="tienda-modal-overlay" id="tiendaModal">
   <div class="tienda-modal">
@@ -1526,6 +1597,17 @@ try {
     <h2>Tips reales para tu piel, cada semana</h2>
     <p>Sumate a nuestra newsletter y recibí, todas las semanas, contenido real sobre el cuidado de tu piel, tips de salud y bienestar, directo en tu mail.</p>
     <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener" class="btn btn-primary">Suscribirme</a>
+  </div>
+</div>
+
+<div class="promo-popup-overlay" id="promoPopup">
+  <div class="promo-popup">
+    <button class="promo-popup-close" id="promoPopupClose" aria-label="Cerrar">&times;</button>
+    <span class="promo-popup-percent">10% OFF</span>
+    <h2>Aprovechá este descuento</h2>
+    <p>Suscribite a nuestra newsletter y usalo en tu próxima visita.</p>
+    <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener" class="btn btn-primary" id="promoPopupCta">Suscribirme</a>
+    <span class="promo-popup-fineprint">Descuento máximo $13.000</span>
   </div>
 </div>
 
