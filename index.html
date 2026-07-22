@@ -79,7 +79,7 @@ fbq('track', 'PageView');
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .whatsapp-float:hover{transform:translateY(-3px) scale(1.05);}
-  .whatsapp-float svg{width:30px; height:30px; fill:var(--white);}
+  .whatsapp-float svg{width:30px; height:30px; fill:var(--white); pointer-events:none;}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%;display:block;}
   .eyebrow{
@@ -144,7 +144,7 @@ fbq('track', 'PageView');
   .nav-cta{display:flex; gap:12px; align-items:center;}
   .menu-toggle{display:flex; background:none; border:none; cursor:pointer; padding:8px; border-radius:8px; transition:background .2s ease;}
   .menu-toggle:hover{background:rgba(14,76,107,0.08);}
-  .menu-toggle svg{width:22px; height:22px; stroke:var(--aegean-deep);}
+  .menu-toggle svg{width:22px; height:22px; stroke:var(--aegean-deep); pointer-events:none;}
   .nav-more{position:relative;}
   .nav-dropdown{
     display:none; position:absolute; top:calc(100% + 10px); right:0;
@@ -248,7 +248,7 @@ fbq('track', 'PageView');
   }
   a.benefit-pill, button.benefit-pill{cursor:pointer;}
   a.benefit-pill:hover, button.benefit-pill:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(14,76,107,0.12);}
-  .benefit-pill svg{width:16px; height:16px; stroke:var(--aegean); fill:none; stroke-width:2;}
+  .benefit-pill svg{width:16px; height:16px; stroke:var(--aegean); fill:none; stroke-width:2; pointer-events:none;}
 
   /* ---------- CARRUSEL ---------- */
   .carousel{position:relative; margin:56px 0 0; padding:0;}
@@ -271,7 +271,7 @@ fbq('track', 'PageView');
     z-index:5; transition:background .2s ease;
   }
   .carousel-arrow:hover{background:var(--ivory);}
-  .carousel-arrow svg{width:20px; height:20px; stroke:var(--aegean-deep);}
+  .carousel-arrow svg{width:20px; height:20px; stroke:var(--aegean-deep); pointer-events:none;}
   .carousel-prev{left:6px;}
   .carousel-next{right:6px;}
 

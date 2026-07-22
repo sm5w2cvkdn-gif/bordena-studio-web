@@ -132,7 +132,7 @@ fbq('track', 'PageView');
   .nav-cta .btn-ghost{display:none;}
   .nav-cta{display:flex; gap:12px; align-items:center;}
   .menu-toggle{display:flex; background:none; border:none; cursor:pointer; padding:6px;}
-  .menu-toggle svg{width:24px; height:24px; stroke:var(--aegean-deep);}
+  .menu-toggle svg{width:24px; height:24px; stroke:var(--aegean-deep); pointer-events:none;}
   .mobile-menu{
     display:none; flex-direction:column; gap:2px;
     background:var(--white); border-bottom:1px solid rgba(14,76,107,0.1);
@@ -157,7 +157,7 @@ fbq('track', 'PageView');
     flex:0 0 auto; width:48px; height:48px; border-radius:50%;
     background:#25D366; display:flex; align-items:center; justify-content:center;
   }
-  .whatsapp-btn svg{width:24px; height:24px; fill:var(--white);}
+  .whatsapp-btn svg{width:24px; height:24px; fill:var(--white); pointer-events:none;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -242,7 +242,7 @@ fbq('track', 'PageView');
     font-family:'Roboto',sans-serif; cursor:default;
   }
   a.benefit-pill, button.benefit-pill{cursor:pointer;}
-  .benefit-pill svg{width:16px; height:16px; stroke:var(--aegean); fill:none; stroke-width:2;}
+  .benefit-pill svg{width:16px; height:16px; stroke:var(--aegean); fill:none; stroke-width:2; pointer-events:none;}
 
   /* ---------- CARRUSEL ---------- */
   .carousel{position:relative; margin:36px 0 0; padding:0;}
@@ -263,7 +263,7 @@ fbq('track', 'PageView');
     display:flex; align-items:center; justify-content:center; cursor:pointer;
     z-index:5;
   }
-  .carousel-arrow svg{width:18px; height:18px; stroke:var(--aegean-deep);}
+  .carousel-arrow svg{width:18px; height:18px; stroke:var(--aegean-deep); pointer-events:none;}
   .carousel-prev{left:2px;}
   .carousel-next{right:2px;}
 
