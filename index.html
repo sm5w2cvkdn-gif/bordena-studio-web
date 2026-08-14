@@ -33,6 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-26C2VMHPND');
+  gtag('config', 'AW-17876361223');
 </script>
 
 <!-- Meta Pixel (Instagram / Facebook Ads) -->
@@ -95,6 +96,50 @@ fbq('track', 'PageView');
   }
   .whatsapp-float:hover{transform:translateY(-3px) scale(1.05);}
   .whatsapp-float svg{width:30px; height:30px; fill:var(--white); pointer-events:none;}
+
+  /* ---------- BORDENA IA (chat) ---------- */
+  .aiChatBtn{
+    position:fixed; bottom:28px; left:98px; z-index:150;
+    height:58px; padding:0 20px; border-radius:100px; border:none; cursor:pointer;
+    background:var(--aegean); color:var(--white); box-shadow:0 14px 34px rgba(0,0,0,0.28);
+    display:flex; align-items:center; gap:9px; font-family:'Roboto',sans-serif; font-weight:600; font-size:0.92rem;
+    transition:transform .25s ease;
+  }
+  .aiChatBtn:hover{transform:translateY(-3px) scale(1.03);}
+  .aiChatBtn svg{width:22px; height:22px; stroke:var(--white); fill:none; stroke-width:2; pointer-events:none;}
+  .aiChatPanel{
+    position:fixed; bottom:100px; left:28px; z-index:250; width:340px; max-width:calc(100vw - 40px);
+    max-height:520px; background:var(--white); border-radius:18px; box-shadow:0 30px 80px rgba(0,0,0,0.35);
+    display:none; flex-direction:column; overflow:hidden;
+  }
+  .aiChatPanel.open{display:flex;}
+  .aiChatHeader{
+    background:var(--aegean); color:var(--white); padding:16px 18px; display:flex; align-items:center; justify-content:space-between;
+    font-family:'Cinzel',serif; font-weight:600; font-size:1rem;
+  }
+  .aiChatHeader span.sub{display:block; font-family:'Roboto',sans-serif; font-weight:400; font-size:0.72rem; opacity:0.8; margin-top:2px;}
+  .aiChatClose{background:none; border:none; color:var(--white); font-size:1.4rem; cursor:pointer; line-height:1; padding:2px 6px;}
+  .aiChatBody{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--ivory);}
+  .aiChatMsg{max-width:82%; padding:10px 13px; border-radius:14px; font-size:0.86rem; line-height:1.45;}
+  .aiChatMsg.bot{background:var(--white); align-self:flex-start; border-bottom-left-radius:4px; box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+  .aiChatMsg.user{background:var(--aegean); color:var(--white); align-self:flex-end; border-bottom-right-radius:4px;}
+  .aiChatMsg a{color:inherit; text-decoration:underline;}
+  .aiChatQuick{display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; background:var(--ivory);}
+  .aiChatQuickBtn{
+    background:var(--white); border:1px solid rgba(14,76,107,0.2); color:var(--aegean); border-radius:100px;
+    padding:6px 12px; font-size:0.76rem; cursor:pointer; font-family:'Roboto',sans-serif;
+  }
+  .aiChatQuickBtn:hover{background:var(--aegean); color:var(--white);}
+  .aiChatInputRow{display:flex; gap:8px; padding:12px; border-top:1px solid rgba(14,76,107,0.08); background:var(--white);}
+  .aiChatInputRow input{
+    flex:1; border:1px solid rgba(14,76,107,0.2); border-radius:100px; padding:10px 14px; font-size:0.85rem;
+    font-family:'Roboto',sans-serif; outline:none;
+  }
+  .aiChatInputRow button{
+    background:var(--aegean); color:var(--white); border:none; border-radius:50%; width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
+  }
+  .aiChatInputRow button svg{width:17px; height:17px; stroke:var(--white); fill:none; stroke-width:2;}
   a{color:inherit; text-decoration:none;}
   img{max-width:100%;display:block;}
   .eyebrow{
@@ -217,6 +262,11 @@ fbq('track', 'PageView');
   .concepto-rating{justify-content:center; margin:6px auto 28px; color:rgba(24,43,49,0.75) !important;}
   .concepto-rating .hero-stars{color:#FBBC04 !important;}
   .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; justify-content:center;}
+  .hero-incentive{
+    margin-top:20px; font-family:'Roboto',sans-serif; font-size:0.88rem; font-weight:600;
+    color:var(--white); background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.35);
+    display:inline-block; padding:8px 18px; border-radius:100px; backdrop-filter:blur(4px);
+  }
 
   /* ---------- SECTION GENERIC ---------- */
   section{position:relative; padding:120px 0;}
@@ -676,6 +726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="https://tuturno.io/bordenastudio" target="_blank" rel="noopener" class="btn btn-primary">Reservar mi turno</a>
         <button class="btn btn-ghost" data-open-services>Ver servicios</button>
       </div>
+      <p class="hero-incentive">🎉 10% OFF en tu primera consulta</p>
     </div>
   </div>
 </section>
@@ -908,7 +959,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
       </a>
     </div>
-    <p>© 2026 Bordena Studio. Todos los derechos reservados.</p>
+    <p>© 2026 Bordena Studio. Todos los derechos reservados. · <a href="/privacidad.html" style="opacity:0.7;">Política de Privacidad</a></p>
   </div>
 </footer>
 
@@ -996,6 +1047,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="https://wa.me/5492213646687?text=Hola!%20Quiero%20consultar%20por%20un%20turno%20en%20Bordena%20Studio." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 5.001L2 22l5.117-1.339a9.96 9.96 0 0 0 4.887 1.339h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.671-1.04-5.182-2.928-7.07a9.935 9.935 0 0 0-7.073-2.93zm0 18.156h-.003a8.19 8.19 0 0 1-4.174-1.144l-.299-.178-3.037.795.811-2.96-.195-.304a8.156 8.156 0 0 1-1.256-4.368c0-4.505 3.665-8.169 8.156-8.169a8.12 8.12 0 0 1 5.774 2.393 8.113 8.113 0 0 1 2.39 5.782c-.002 4.505-3.667 8.153-8.167 8.153z"/></svg>
 </a>
+
+<button class="aiChatBtn" id="aiChatOpenBtn" aria-label="Abrir Bordena IA">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  Bordena IA
+</button>
+
+<div class="aiChatPanel" id="aiChatPanel">
+  <div class="aiChatHeader">
+    <div>Bordena IA<span class="sub">Respuestas al instante</span></div>
+    <button class="aiChatClose" id="aiChatCloseBtn" aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="aiChatBody" id="aiChatBody"></div>
+  <div class="aiChatQuick" id="aiChatQuick">
+    <button class="aiChatQuickBtn" data-q="precios">Precios</button>
+    <button class="aiChatQuickBtn" data-q="turno">Reservar turno</button>
+    <button class="aiChatQuickBtn" data-q="ubicacion">Ubicación</button>
+    <button class="aiChatQuickBtn" data-q="descuentos">Descuentos</button>
+  </div>
+  <div class="aiChatInputRow">
+    <input type="text" id="aiChatInput" placeholder="Escribí tu pregunta...">
+    <button id="aiChatSendBtn" aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
+  </div>
+</div>
 
 <script>
   var navToggle = document.getElementById('menuToggle');
@@ -1659,6 +1733,123 @@ try {
     document.addEventListener('click', tryPlay, { once: true });
     document.addEventListener('touchstart', tryPlay, { once: true });
   }
+</script>
+
+<!-- Conversiones de Google Ads: reserva de turno y contacto por WhatsApp -->
+<script>
+try {
+  document.querySelectorAll('a[href*="tuturno.io"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-17876361223', 'event_category': 'Reserva', 'event_label': 'Click Reservar turno' });
+      }
+    });
+  });
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-17876361223', 'event_category': 'Contacto', 'event_label': 'Click WhatsApp' });
+      }
+    });
+  });
+} catch (err) {
+  console.error('Error en tracking de conversiones:', err);
+}
+</script>
+
+<!-- Bordena IA: chat de respuestas automáticas -->
+<script>
+try {
+  var aiChatBtn = document.getElementById('aiChatOpenBtn');
+  var aiChatPanel = document.getElementById('aiChatPanel');
+  var aiChatClose = document.getElementById('aiChatCloseBtn');
+  var aiChatBody = document.getElementById('aiChatBody');
+  var aiChatInput = document.getElementById('aiChatInput');
+  var aiChatSend = document.getElementById('aiChatSendBtn');
+  var aiChatQuick = document.getElementById('aiChatQuick');
+  var aiChatStarted = false;
+
+  var aiRules = [
+    { kws: ['precio','cuesta','vale','cuanto sale','arancel'], a: 'Los precios varían según el tratamiento. Podés ver el detalle completo tocando "Servicios" en el menú, o reservar tu turno y consultarlo ahí directo: <a href="https://tuturno.io/bordenastudio" target="_blank">reservar turno</a>.' },
+    { kws: ['turno','reservar','cita','agendar'], a: 'Podés reservar tu turno acá 💅 <a href="https://tuturno.io/bordenastudio" target="_blank">tuturno.io/bordenastudio</a>' },
+    { kws: ['direccion','ubicacion','donde','queda','llegar'], a: 'Escribinos por WhatsApp y te pasamos la dirección exacta y cómo llegar 📍' },
+    { kws: ['horario','abren','cierran','atienden','dia'], a: 'Trabajamos de lunes a sábado. Para el horario exacto de hoy, escribinos por WhatsApp.' },
+    { kws: ['franquicia'], a: '¿Te interesa abrir una franquicia Bordena? Escribinos a bordenastudio@gmail.com y te contamos todo.' },
+    { kws: ['uña','manicura','manicuria','semipermanente','esculpida'], a: 'Tenemos Semipermanente, Kapping Gel/Acrílico, Dipping, Esculpidas, Softgel, Nail Art y más. Mirá el detalle completo en "Servicios".' },
+    { kws: ['pestaña'], a: 'Hacemos pestañas Clásicas, Efecto Híbrido, Brasileiro, 3D/4D/5D y Botox de pestañas. Mirá todo en "Servicios".' },
+    { kws: ['ceja'], a: 'Ofrecemos perfilado, laminado y micropigmentación de cejas.' },
+    { kws: ['facial','piel','limpieza','peeling','dermapen'], a: 'Tenemos varios tratamientos faciales: limpiezas, dermapen, dermaplaning, peelings y más. Mirá "Servicios" para el detalle.' },
+    { kws: ['corporal','cavitacion','radiofrecuencia','lipolaser'], a: 'En estética corporal ofrecemos cavitación, lipoláser, radiofrecuencia, vacumterapia y más.' },
+    { kws: ['membresia','club'], a: 'Nuestro Club Bordena tiene un plan de membresía mensual con 4 servicios/mes. Mirá el detalle en la sección Club Bordena.' },
+    { kws: ['descuento','promo','oferta','beneficio'], a: 'Tenés 10% OFF en tu primera consulta, y todos los viernes hasta 20% de reintegro con Cuenta DNI. Mirá más en "Beneficios y descuentos".' },
+    { kws: ['gracias'], a: '¡Con gusto! Cualquier otra duda, acá estoy 🙂' },
+    { kws: ['hola','buenas','buen dia','buenas tardes'], a: '¡Hola! ¿En qué te puedo ayudar? Preguntame sobre servicios, precios, turnos o ubicación.' },
+  ];
+  var quickMap = {
+    precios: 'precios',
+    turno: 'quiero reservar un turno',
+    ubicacion: 'donde queda',
+    descuentos: 'que descuentos tienen'
+  };
+
+  function aiAddMsg(text, who){
+    var div = document.createElement('div');
+    div.className = 'aiChatMsg ' + who;
+    div.innerHTML = text;
+    aiChatBody.appendChild(div);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+  }
+
+  function aiAnswer(userText){
+    var t = userText.toLowerCase();
+    for (var i = 0; i < aiRules.length; i++) {
+      for (var j = 0; j < aiRules[i].kws.length; j++) {
+        if (t.indexOf(aiRules[i].kws[j]) !== -1) return aiRules[i].a;
+      }
+    }
+    return 'No estoy segura de eso 🤔 Te recomiendo escribirnos directo por <a href="https://wa.me/5492213646687" target="_blank">WhatsApp</a> y te ayudamos enseguida.';
+  }
+
+  function aiHandleSend(text){
+    if (!text || !text.trim()) return;
+    aiAddMsg(text, 'user');
+    setTimeout(function(){ aiAddMsg(aiAnswer(text), 'bot'); }, 400);
+  }
+
+  function aiOpen(){
+    if (!aiChatPanel) return;
+    aiChatPanel.classList.add('open');
+    if (!aiChatStarted) {
+      aiAddMsg('¡Hola! Soy <strong>Bordena IA</strong> 👋 Preguntame sobre servicios, precios, turnos, ubicación o descuentos.', 'bot');
+      aiChatStarted = true;
+    }
+  }
+  function aiClose(){
+    if (aiChatPanel) aiChatPanel.classList.remove('open');
+  }
+
+  if (aiChatBtn) aiChatBtn.addEventListener('click', aiOpen);
+  if (aiChatClose) aiChatClose.addEventListener('click', aiClose);
+  if (aiChatSend) aiChatSend.addEventListener('click', function(){
+    aiHandleSend(aiChatInput.value);
+    aiChatInput.value = '';
+  });
+  if (aiChatInput) aiChatInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      aiHandleSend(aiChatInput.value);
+      aiChatInput.value = '';
+    }
+  });
+  if (aiChatQuick) {
+    aiChatQuick.querySelectorAll('.aiChatQuickBtn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        aiHandleSend(quickMap[btn.getAttribute('data-q')]);
+      });
+    });
+  }
+} catch (err) {
+  console.error('Error en Bordena IA:', err);
+}
 </script>
 
 </body>
