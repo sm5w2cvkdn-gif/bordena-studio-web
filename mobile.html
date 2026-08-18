@@ -651,7 +651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#concepto">Concepto</a>
-    <button class="mobile-menu-btn" data-open-beautyreset>Beauty Reset</button>
+    <a href="https://wa.me/5492213646687?text=Hola!%20Quiero%20armar%20mi%20Beauty%20Reset.%20Los%20servicios%20que%20me%20quiero%20hacer%20son%3A%20" target="_blank" rel="noopener">Beauty Reset</a>
     <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena&body=Hola%2C%20estoy%20interesado%2Fa%20en%20abrir%20una%20franquicia%20Bordena.%20Mi%20nombre%20es%3A%20">Franquicias</a>
     <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener noreferrer">Newsletter</a>
     <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20trabajar%20con%20ustedes">Trabajá con nosotros</a>
@@ -1447,40 +1447,6 @@ try {
 
 <script>
 try {
-  var beautyResetModal = document.getElementById('beautyResetModal');
-  var beautyResetModalClose = document.getElementById('beautyResetModalClose');
-  var beautyResetTriggers = document.querySelectorAll('[data-open-beautyreset]');
-
-  function openBeautyResetModal(e){
-    if (e) e.preventDefault();
-    if (!beautyResetModal) return;
-    beautyResetModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    var mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenu) mobileMenu.classList.remove('open');
-  }
-  function closeBeautyResetModal(){
-    if (!beautyResetModal) return;
-    beautyResetModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  beautyResetTriggers.forEach(function(el){ el.addEventListener('click', openBeautyResetModal); });
-  if (beautyResetModalClose) beautyResetModalClose.addEventListener('click', closeBeautyResetModal);
-  if (beautyResetModal) {
-    beautyResetModal.addEventListener('click', function(e){
-      if (e.target === beautyResetModal) closeBeautyResetModal();
-    });
-  }
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') closeBeautyResetModal();
-  });
-} catch (err) {
-  console.error('Error en modal de Beauty Reset:', err);
-}
-</script>
-
-<script>
-try {
   var beneficiosModal = document.getElementById('beneficiosModal');
   var beneficiosModalClose = document.getElementById('beneficiosModalClose');
   var beneficiosTriggers = document.querySelectorAll('[data-open-beneficios]');
@@ -1623,21 +1589,6 @@ try {
       </div>
 
     </div>
-  </div>
-</div>
-
-<div class="franquicias-modal-overlay" id="beautyResetModal">
-  <div class="franquicias-modal">
-    <div class="services-modal-header">
-      <h3>Beauty Reset</h3>
-      <button class="services-modal-close" id="beautyResetModalClose" aria-label="Cerrar">&times;</button>
-    </div>
-    <span class="eyebrow">Beauty Reset</span>
-    <h2>Estar linda, sin que sea un dolor de cabeza</h2>
-    <p>Beauty Reset es la solución para la mujer que no tiene tiempo —ni ganas— de lidiar con la gestión de turnos. Nosotras organizamos tu agenda y reservamos nuestra disponibilidad para que puedas hacerte varios servicios juntos, en un mismo circuito, en una sola visita.</p>
-    <p>Vení una vez al mes o cada 21 días y salí lista: sin tráfico, sin ir y venir, sin tener que coordinar turno por turno. Nosotras nos ocupamos de todo.</p>
-    <p>Contanos por privado qué servicios te querés hacer y te armamos el circuito completo.</p>
-    <a href="https://wa.me/5492213646687?text=Hola!%20Quiero%20armar%20mi%20Beauty%20Reset.%20Los%20servicios%20que%20me%20quiero%20hacer%20son%3A%20" target="_blank" rel="noopener" class="btn btn-primary">Armar mi Beauty Reset</a>
   </div>
 </div>
 
