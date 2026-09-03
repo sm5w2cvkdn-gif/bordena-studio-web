@@ -1670,13 +1670,16 @@ try {
   }
 </script>
 
-<!-- Conversiones de Google Ads: reserva de turno y contacto por WhatsApp -->
+<!-- Conversiones de Google Ads + Meta Pixel: reserva de turno y contacto por WhatsApp -->
 <script>
 try {
   document.querySelectorAll('a[href*="tuturno.io"]').forEach(function(el){
     el.addEventListener('click', function(){
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', { 'send_to': 'AW-17876361223', 'event_category': 'Reserva', 'event_label': 'Click Reservar turno' });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'Schedule', { value: 30000, currency: 'ARS' });
       }
     });
   });
