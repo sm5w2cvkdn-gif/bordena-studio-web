@@ -1378,6 +1378,8 @@ try {
     document.body.style.overflow = 'hidden';
     var mobileMenu = document.getElementById('mobileMenu');
     if (mobileMenu) mobileMenu.classList.remove('open');
+    var activeTab = document.querySelector('.services-tab.active');
+    window.bordenaLastCategory = activeTab ? activeTab.dataset.tab : 'unas';
   }
   function closeServicesModal(){
     if (!servicesModal) return;
@@ -1404,6 +1406,7 @@ try {
       tab.classList.add('active');
       var target = document.querySelector('.services-panel[data-panel="' + tab.dataset.tab + '"]');
       if (target) target.classList.add('active');
+      window.bordenaLastCategory = tab.dataset.tab;
     });
   });
 } catch (err) {
@@ -1679,7 +1682,10 @@ try {
         gtag('event', 'conversion', { 'send_to': 'AW-17876361223', 'event_category': 'Reserva', 'event_label': 'Click Reservar turno' });
       }
       if (typeof fbq === 'function') {
-        fbq('track', 'Schedule', { value: 30000, currency: 'ARS' });
+        var categoryValues = { unas: 33000, pestanas: 30000, cejas: 30000, piel: 50000, corporal: 30000, medica: 70000 };
+        var cat = window.bordenaLastCategory;
+        var value = categoryValues[cat] || 30000;
+        fbq('track', 'Schedule', { value: value, currency: 'ARS' });
       }
     });
   });
