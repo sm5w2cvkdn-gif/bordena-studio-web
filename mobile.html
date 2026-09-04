@@ -1420,12 +1420,11 @@ try {
 
 <script>
 try {
-  var tiendaModal = document.getElementById('tiendaModal');
-  var tiendaModalClose = document.getElementById('tiendaModalClose');
   var tiendaTriggers = document.querySelectorAll('[data-open-tienda]');
 
   function openTiendaModal(e){
     if (e) e.preventDefault();
+    var tiendaModal = document.getElementById('tiendaModal');
     if (!tiendaModal) return;
     tiendaModal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1433,17 +1432,17 @@ try {
     if (mobileMenu) mobileMenu.classList.remove('open');
   }
   function closeTiendaModal(){
+    var tiendaModal = document.getElementById('tiendaModal');
     if (!tiendaModal) return;
     tiendaModal.classList.remove('open');
     document.body.style.overflow = '';
   }
   tiendaTriggers.forEach(function(el){ el.addEventListener('click', openTiendaModal); });
-  if (tiendaModalClose) tiendaModalClose.addEventListener('click', closeTiendaModal);
-  if (tiendaModal) {
-    tiendaModal.addEventListener('click', function(e){
-      if (e.target === tiendaModal) closeTiendaModal();
-    });
-  }
+  document.addEventListener('click', function(e){
+    if (e.target && e.target.id === 'tiendaModalClose') closeTiendaModal();
+    var tiendaModal = document.getElementById('tiendaModal');
+    if (tiendaModal && e.target === tiendaModal) closeTiendaModal();
+  });
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') closeTiendaModal();
   });
@@ -1454,12 +1453,11 @@ try {
 
 <script>
 try {
-  var ugcModal = document.getElementById('ugcModal');
-  var ugcModalClose = document.getElementById('ugcModalClose');
   var ugcTriggers = document.querySelectorAll('[data-open-ugc]');
 
   function openUgcModal(e){
     if (e) e.preventDefault();
+    var ugcModal = document.getElementById('ugcModal');
     if (!ugcModal) return;
     ugcModal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1467,17 +1465,17 @@ try {
     if (mobileMenu) mobileMenu.classList.remove('open');
   }
   function closeUgcModal(){
+    var ugcModal = document.getElementById('ugcModal');
     if (!ugcModal) return;
     ugcModal.classList.remove('open');
     document.body.style.overflow = '';
   }
   ugcTriggers.forEach(function(el){ el.addEventListener('click', openUgcModal); });
-  if (ugcModalClose) ugcModalClose.addEventListener('click', closeUgcModal);
-  if (ugcModal) {
-    ugcModal.addEventListener('click', function(e){
-      if (e.target === ugcModal) closeUgcModal();
-    });
-  }
+  document.addEventListener('click', function(e){
+    if (e.target && e.target.id === 'ugcModalClose') closeUgcModal();
+    var ugcModal = document.getElementById('ugcModal');
+    if (ugcModal && e.target === ugcModal) closeUgcModal();
+  });
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') closeUgcModal();
   });
