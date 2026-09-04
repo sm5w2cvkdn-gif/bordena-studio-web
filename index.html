@@ -577,6 +577,8 @@ fbq('track', 'PageView');
   footer .logo{margin-bottom:14px; display:inline-block;}
   footer .logo img{height:56px; width:auto; display:inline-block;}
   footer .foot-tag{font-family:'Cinzel',serif; font-style:italic; color:var(--aegean); margin-bottom:26px;}
+  footer .foot-contact{font-size:0.9rem; opacity:0.85; margin-top:18px;}
+  footer .foot-contact a{color:var(--aegean); font-weight:600; text-decoration:underline;}
   footer .foot-links{display:flex; gap:24px; justify-content:center; margin-bottom:26px; flex-wrap:wrap;}
   footer .foot-links a{opacity:0.85; color:var(--graytext);}
   .foot-link-btn{
@@ -702,6 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="nav-dropdown" id="navDropdown">
           <button class="nav-dropdown-btn" data-open-services>Servicios</button>
           <button class="nav-dropdown-btn" data-open-tienda>Tienda</button>
+          <button class="nav-dropdown-btn" data-open-ugc>Creadores UGC</button>
         </div>
       </div>
     </div>
@@ -963,6 +966,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
       </a>
     </div>
+    <p class="foot-contact">Contacto · WhatsApp: <a href="https://wa.me/5492213646687" target="_blank" rel="noopener">221 364-6687</a></p>
     <p>© 2026 Bordena Studio. Todos los derechos reservados. · <a href="/privacidad.html" style="opacity:0.7;">Política de Privacidad</a></p>
   </div>
 </footer>
@@ -1519,6 +1523,42 @@ try {
 
 <script>
 try {
+  var ugcModal = document.getElementById('ugcModal');
+  var ugcModalClose = document.getElementById('ugcModalClose');
+  var ugcTriggers = document.querySelectorAll('[data-open-ugc]');
+
+  function openUgcModal(e){
+    if (e) e.preventDefault();
+    if (!ugcModal) return;
+    ugcModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var navDropdown = document.getElementById('navDropdown');
+    if (navDropdown) navDropdown.classList.remove('open');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+  }
+  function closeUgcModal(){
+    if (!ugcModal) return;
+    ugcModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  ugcTriggers.forEach(function(el){ el.addEventListener('click', openUgcModal); });
+  if (ugcModalClose) ugcModalClose.addEventListener('click', closeUgcModal);
+  if (ugcModal) {
+    ugcModal.addEventListener('click', function(e){
+      if (e.target === ugcModal) closeUgcModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeUgcModal();
+  });
+} catch (err) {
+  console.error('Error en modal de Creadores UGC:', err);
+}
+</script>
+
+<script>
+try {
   var beneficiosModal = document.getElementById('beneficiosModal');
   var beneficiosModalClose = document.getElementById('beneficiosModalClose');
   var beneficiosTriggers = document.querySelectorAll('[data-open-beneficios]');
@@ -1661,6 +1701,20 @@ try {
       </div>
 
     </div>
+  </div>
+</div>
+
+<div class="franquicias-modal-overlay" id="ugcModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Creadores UGC</h3>
+      <button class="services-modal-close" id="ugcModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <span class="eyebrow">Sumate al equipo</span>
+    <h2>Buscamos creadoras UGC de contenido de estética</h2>
+    <p>Estamos buscando creadoras de contenido UGC para mostrar los servicios de Bordena Studio: uñas, pestañas, cejas, faciales, estética corporal y medicina estética.</p>
+    <p>Si te interesa, mandanos un mail con tu portfolio a <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20ser%20creadora%20UGC%20de%20Bordena%20Studio">bordenastudio@gmail.com</a> y nos vamos a estar contactando.</p>
+    <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20ser%20creadora%20UGC%20de%20Bordena%20Studio" class="btn btn-primary">Enviar mi portfolio</a>
   </div>
 </div>
 
