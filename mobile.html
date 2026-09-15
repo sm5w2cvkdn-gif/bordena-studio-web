@@ -661,6 +661,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="mobile-menu-btn" data-open-services>Servicios</button>
     <button class="mobile-menu-btn" data-open-tienda>Tienda</button>
     <button class="mobile-menu-btn" data-open-ugc>Creadores UGC</button>
+    <button class="mobile-menu-btn" data-open-editores>Quiero editar para ustedes</button>
   </div>
 </header>
 
@@ -1486,6 +1487,39 @@ try {
 
 <script>
 try {
+  var editoresTriggers = document.querySelectorAll('[data-open-editores]');
+
+  function openEditoresModal(e){
+    if (e) e.preventDefault();
+    var editoresModal = document.getElementById('editoresModal');
+    if (!editoresModal) return;
+    editoresModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+  }
+  function closeEditoresModal(){
+    var editoresModal = document.getElementById('editoresModal');
+    if (!editoresModal) return;
+    editoresModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  editoresTriggers.forEach(function(el){ el.addEventListener('click', openEditoresModal); });
+  document.addEventListener('click', function(e){
+    if (e.target && e.target.id === 'editoresModalClose') closeEditoresModal();
+    var editoresModal = document.getElementById('editoresModal');
+    if (editoresModal && e.target === editoresModal) closeEditoresModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeEditoresModal();
+  });
+} catch (err) {
+  console.error('Error en modal de Editores:', err);
+}
+</script>
+
+<script>
+try {
   var beneficiosModal = document.getElementById('beneficiosModal');
   var beneficiosModalClose = document.getElementById('beneficiosModalClose');
   var beneficiosTriggers = document.querySelectorAll('[data-open-beneficios]');
@@ -1645,6 +1679,20 @@ try {
     <p>Estamos buscando creadoras de contenido UGC para mostrar los servicios de Bordena Studio: uñas, pestañas, cejas, faciales, estética corporal y medicina estética.</p>
     <p>Si te interesa, mandanos un mail con tu portfolio a <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20ser%20creadora%20UGC%20de%20Bordena%20Studio">bordenastudio@gmail.com</a> y nos vamos a estar contactando.</p>
     <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20ser%20creadora%20UGC%20de%20Bordena%20Studio" class="btn btn-primary">Enviar mi portfolio</a>
+  </div>
+</div>
+
+<div class="franquicias-modal-overlay" id="editoresModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Editores</h3>
+      <button class="services-modal-close" id="editoresModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <span class="eyebrow">Sumate al equipo</span>
+    <h2>Buscamos editores para nuestro contenido</h2>
+    <p>Estamos buscando editores de video para el contenido de Bordena Studio: reels, videos cortos y piezas para redes sociales.</p>
+    <p>Si te interesa, mandanos un mail con tu portfolio a <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20editar%20para%20Bordena%20Studio">bordenastudio@gmail.com</a> y nos vamos a estar contactando.</p>
+    <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20editar%20para%20Bordena%20Studio" class="btn btn-primary">Enviar mi portfolio</a>
   </div>
 </div>
 
