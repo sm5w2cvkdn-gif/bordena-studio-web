@@ -717,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="nav-links">
       <a href="#concepto">Concepto</a>
       <a href="#club">Beauty Reset <span class="chip-top" title="El más elegido por nuestros clientes">TOP</span></a>
-      <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena&body=Hola%2C%20estoy%20interesado%2Fa%20en%20abrir%20una%20franquicia%20Bordena.%20Mi%20nombre%20es%3A%20">Franquicias</a>
+      <a href="#" data-open-franquicias>Franquicias</a>
       <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener noreferrer">Newsletter</a>
       <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20trabajar%20con%20ustedes">Trabajá con nosotros</a>
     </div>
@@ -730,7 +730,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="nav-dropdown" id="navDropdown">
           <a href="#concepto" class="nav-dropdown-mobile-only">Concepto</a>
           <a href="#club" class="nav-dropdown-mobile-only">Beauty Reset <span class="chip-top" title="El más elegido por nuestros clientes">TOP</span></a>
-          <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20abrir%20una%20franquicia%20Bordena&body=Hola%2C%20estoy%20interesado%2Fa%20en%20abrir%20una%20franquicia%20Bordena.%20Mi%20nombre%20es%3A%20" class="nav-dropdown-mobile-only">Franquicias</a>
+          <a href="#" data-open-franquicias class="nav-dropdown-mobile-only">Franquicias</a>
           <a href="https://substack.com/@bordenastudio" target="_blank" rel="noopener noreferrer" class="nav-dropdown-mobile-only">Newsletter</a>
           <a href="mailto:bordenastudio@gmail.com?subject=Quiero%20trabajar%20con%20ustedes" class="nav-dropdown-mobile-only">Trabajá con nosotros</a>
           <button class="nav-dropdown-btn" data-open-services>Servicios</button>
@@ -1827,6 +1827,20 @@ try {
   </div>
 </div>
 
+<div class="franquicias-modal-overlay" id="franquiciasModal">
+  <div class="franquicias-modal">
+    <div class="services-modal-header">
+      <h3>Franquicias</h3>
+      <button class="services-modal-close" id="franquiciasModalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <span class="eyebrow">Sumate a Bordena Studio</span>
+    <h2>¿Te interesa una franquicia?</h2>
+    <p>Buscamos personas que quieran trabajar de forma presencial con nosotras. No compartimos el modelo de forma pública: escribinos y te lo explicamos personalmente.</p>
+    <p>Mandanos un mail a <a href="mailto:bordenastudio@gmail.com?subject=Franquicias&body=Hola%2C%20me%20interesa%20una%20franquicia%20de%20Bordena%20Studio.%20Mi%20nombre%20es%3A%20%0AMi%20ciudad%3A%20%0AMi%20inter%C3%A9s%3A%20">bordenastudio@gmail.com</a> con el asunto <strong>Franquicias</strong>, contanos tu interés y nosotras nos ponemos en contacto con vos.</p>
+    <a href="mailto:bordenastudio@gmail.com?subject=Franquicias&body=Hola%2C%20me%20interesa%20una%20franquicia%20de%20Bordena%20Studio.%20Mi%20nombre%20es%3A%20%0AMi%20ciudad%3A%20%0AMi%20inter%C3%A9s%3A%20" class="btn btn-primary">Enviar mi mail</a>
+  </div>
+</div>
+
 <div class="franquicias-modal-overlay" id="editoresModal">
   <div class="franquicias-modal">
     <div class="services-modal-header">
@@ -1964,7 +1978,7 @@ try {
     { kws: ['turno','reservar','cita','agendar'], a: 'Podés reservar tu turno acá 💅 <a href="https://tuturno.io/bordenastudio" target="_blank">tuturno.io/bordenastudio</a>' },
     { kws: ['direccion','ubicacion','donde','queda','llegar'], a: 'Nos encontrás en calle 49 entre 16 y 17, N° 1068, La Plata 📍' },
     { kws: ['horario','abren','cierran','atienden','dia'], a: 'Para los horarios disponibles, escribinos por WhatsApp al 221 364-6687 o reservá en tuturno.io/bordenastudio.' },
-    { kws: ['franquicia'], a: '¿Te interesa abrir una franquicia Bordena? Escribinos a bordenastudio@gmail.com y te contamos todo.' },
+    { kws: ['franquicia'], a: '¿Te interesa abrir una franquicia Bordena? Escribinos a bordenastudio@gmail.com con el asunto Franquicias, contanos tu interés y nos ponemos en contacto.' },
     { kws: ['uña','manicura','manicuria','semipermanente','esculpida'], a: 'Tenemos Semipermanente, Kapping Gel/Acrílico, Dipping, Esculpidas, Softgel, Nail Art y más. Mirá el detalle completo en "Servicios".' },
     { kws: ['pestaña'], a: 'Hacemos pestañas Clásicas, Efecto Híbrido, Brasileiro, 3D/4D/5D y Botox de pestañas. Mirá todo en "Servicios".' },
     { kws: ['ceja'], a: 'Ofrecemos perfilado, laminado y micropigmentación de cejas.' },
@@ -2051,6 +2065,25 @@ try {
     var modal = document.getElementById('servicesModal');
     if (tab) tab.click();
     if (modal) { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  });
+})();
+</script>
+<script>
+(function(){
+  function fm(){return document.getElementById('franquiciasModal');}
+  document.addEventListener('click', function(e){
+    var t=e.target, m=fm();
+    if (t.closest && t.closest('[data-open-franquicias]')) {
+      e.preventDefault();
+      if (m) { m.classList.add('open'); document.body.style.overflow='hidden'; }
+      var d=document.getElementById('navDropdown'); if (d) d.classList.remove('open');
+      var mm=document.getElementById('mobileMenu'); if (mm) mm.classList.remove('open');
+      return;
+    }
+    if ((t.id==='franquiciasModalClose' || t===m) && m) { m.classList.remove('open'); document.body.style.overflow=''; }
+  });
+  document.addEventListener('keydown', function(e){
+    var m=fm(); if (e.key==='Escape' && m) { m.classList.remove('open'); document.body.style.overflow=''; }
   });
 })();
 </script>
