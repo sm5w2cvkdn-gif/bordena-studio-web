@@ -626,6 +626,7 @@ fbq('track', 'PageView');
     padding:7px 14px; border-radius:100px; font-size:0.74rem; font-weight:600; cursor:pointer;
   }
   .services-tab.active{background:var(--aegean); border-color:var(--aegean); color:var(--white);}
+  .services-modal-overlay.single-cat .services-tabs{display:none;}
   .services-panel{display:none;}
   .services-panel.active{display:block;}
   .services-panel .catalogo{gap:8px;}
@@ -1177,7 +1178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="services-modal-overlay" id="servicesModal">
   <div class="services-modal">
     <div class="services-modal-header">
-      <h3>Todos nuestros servicios</h3>
+      <h3 id="servicesModalTitle">Todos nuestros servicios</h3>
       <button class="services-modal-close" id="servicesModalClose" aria-label="Cerrar">&times;</button>
     </div>
     <div class="services-modal-cta">
@@ -1430,6 +1431,9 @@ try {
     if (mobileMenu) mobileMenu.classList.remove('open');
     var activeTab = document.querySelector('.services-tab.active');
     window.bordenaLastCategory = activeTab ? activeTab.dataset.tab : 'unas';
+    servicesModal.classList.remove('single-cat');
+    var mt = document.getElementById('servicesModalTitle');
+    if (mt) mt.textContent = 'Todos nuestros servicios';
   }
   function closeServicesModal(){
     if (!servicesModal) return;
@@ -1963,6 +1967,11 @@ try {
     var tab = document.querySelector('.services-tab[data-tab="' + b.getAttribute('data-open-cat') + '"]');
     var modal = document.getElementById('servicesModal');
     if (tab) tab.click();
+    if (modal && tab) {
+      modal.classList.add('single-cat');
+      var mt = document.getElementById('servicesModalTitle');
+      if (mt) mt.textContent = tab.textContent.trim();
+    }
     if (modal) { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
   });
 })();
