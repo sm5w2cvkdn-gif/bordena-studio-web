@@ -749,6 +749,12 @@ fbq('track', 'PageView');
 .google-resumen span.cta{color:#1a73e8; font-weight:500;}
 
 @media (min-width:901px){.hero{padding-top:170px !important;padding-bottom:24px !important;}}
+
+@keyframes topBounce{0%,100%{transform:translateY(0) scale(1);}15%{transform:translateY(-4px) scale(1.08);}30%{transform:translateY(0) scale(1);}45%{transform:translateY(-2px) scale(1.04);}60%{transform:translateY(0) scale(1);}}
+@keyframes topShine{0%,55%{background-position:-120% 0;}100%{background-position:220% 0;}}
+nav .chip-top{display:inline-block; animation:topBounce 2.4s ease-in-out infinite; background-image:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%); background-size:200% 100%; background-repeat:no-repeat;}
+nav .chip-top{animation:topBounce 2.4s ease-in-out infinite, topShine 2.4s linear infinite;}
+@media (prefers-reduced-motion:reduce){nav .chip-top{animation:none;}}
 </style>
 </head>
 <body>
